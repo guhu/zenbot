@@ -123,26 +123,27 @@
 		    onPeriod: function (s, cb) {		
 ////////////////////////////////////////////////////SPECIAL ACTION////////////////////////////////////////////////////
 //----------------------------------------------------SELL IMMEDIATLY-------------------------------------------------
-	//	s.price_immediatly_action = (s.start + (s.start / 100 * s.options.sell_immediatly))
-	//	if(s.last_action === 'buy') {
-	//		if(s.period.high >  s.price_immediatly_action){
-	//			if(s.period.high < (s.highest - (s.highest / 100 * 1))){
-	//				s.signal = 'sell'
-	//				s.last_action = 'sell'
-	//				s.start = s.period.high
-	//				s.highest = s.period.high
-	//                              s.lowest = s.period.high
-	//				s.sell_immediatly_boolean = 'true'
-	//				s.stop_loss_boolean = 'false'
-	//				s.sell_immediatly_boolean = 'true'
-	//				console.log(('\nSELL IMMEDIATLY REACH:'+ s.options.sell_immediatly + '.').green)
-	//				return cb() 
-	//			}
-	//		}
-	//	}
+		s.price_immediatly_action = (s.start + (s.start / 100 * s.options.sell_immediatly))
+		if(s.last_action === 'buy') {
+			if(s.period.high >  s.price_immediatly_action){
+					s.signal = 'sell'
+					s.last_action = 'sell'
+					s.start = s.period.high
+					s.highest = s.period.high
+	                s.lowest = s.period.high
+					s.sell_immediatly_boolean = 'true'
+					s.stop_loss_boolean = 'false'
+					s.sell_immediatly_boolean = 'true'
+					console.log(('\nSELL IMMEDIATLY REACH:'+ s.options.sell_immediatly + '.').green)
+					return cb() 
+				}
+			}
 //----------------------------------------------------NORMAL SELL-------------------------------------------------
 			s.future_action_sell = s.start + (s.start / 100 * s.options.sell_threshold_max) 
 			if(s.period.high > s.future_action_sell) {
+				s.buy_boolean=true
+			}
+			if(s.buy_boolean===true){
 				s.future_action_sell = (s.highest - (s.highest / 100 * s.options.sell_threshold))
 			   if(s.period.high < (s.highest - (s.highest / 100 * s.options.sell_threshold))) {
 					s.signal = 'sell'
@@ -150,6 +151,7 @@
 					s.start = s.period.high
 					s.highest = s.period.high
 					s.lowest = s.period.high
+					s.buy_boolean=false
 					s.stop_loss_boolean = 'false'
 					s.sell_immediatly_boolean = 'false'
 					console.log(('\nNORMAL SELL = ' + s.period.high ).green)
@@ -217,6 +219,7 @@
 					}
 						
 				}
+		}
 	            s.last_value_3 = s.last_value_2
 		        s.last_value_2 = s.last_value_1
 		        s.last_value_1 = s.period.high
