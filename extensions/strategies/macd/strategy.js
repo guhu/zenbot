@@ -13,10 +13,10 @@ module.exports = function container (get, set, clear) {
       this.option('ema_short_period', 'number of periods for the shorter EMA', Number, 12)
       this.option('ema_long_period', 'number of periods for the longer EMA', Number, 26)
       this.option('signal_period', 'number of periods for the signal EMA', Number, 9)
-      this.option('up_trend_threshold', 'threshold to trigger a buy signal', Number, 0)
-      this.option('down_trend_threshold', 'threshold to trigger a sold signal', Number, 0)
+      this.option('up_trend_threshold', 'threshold to trigger a buy signal', Number, 1)
+      this.option('down_trend_threshold', 'threshold to trigger a sold signal', Number, 1)
       this.option('overbought_rsi_periods', 'number of periods for overbought RSI', Number, 25)
-      this.option('overbought_rsi', 'sold when RSI exceeds this value', Number, 70)
+      this.option('overbought_rsi', 'sold when RSI exceeds this value', Number,30 )
     },
 
     calculate: function (s) {
@@ -47,7 +47,7 @@ module.exports = function container (get, set, clear) {
         if (s.overbought) {
           s.overbought = false
           s.trend = 'overbought'
-          s.signal = 'sold'
+          s.signal = 'sell'
           return cb()
         }
       }

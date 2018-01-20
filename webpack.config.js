@@ -7,7 +7,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     app: './webpack-src/js/app.js',
-    plotly: './webpack-src/js/plotly.js'
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -61,17 +60,6 @@ module.exports = {
           options: '$'
         }]
       },
-      {
-        test: /\.js$/,
-        use: 'transform-loader?plotly.js/tasks/util/compress_attributes.js',
-      },
-      {
-        test: require.resolve('./webpack-src/js/plotly.js'),
-        use: [{
-          loader: 'expose-loader',
-          options: 'Plotly'
-        }]
-      }
     ],
   },
 }
