@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" sizes="330x203" href="/assets-zenbot/logo.png">
     <link rel="apple-touch-icon" type="image/png" sizes="330x203" href="/assets-zenbot/logo.png">
 
-    <title><%= asset.toUpperCase() %>/<%= currency.toUpperCase() %> on <%= exchange.name.toUpperCase() %> - Dashboard</title>
+    <title><%= asset.toUpperCase() %>/<%= currency.toUpperCase() %> - Zenbot Dashboard</title>
     <!-- Webpack compiled -->
     <link href="/assets-wp/app.bundle.js" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -155,13 +155,13 @@
                                 new TradingView.widget({
                                     "autosize": true,
                                     "symbol": "<%= (exchange.name.toUpperCase() === 'GDAX' ? 'COINBASE' : exchange.name.toUpperCase()) %>:<%= asset.toUpperCase() %><%= currency.toUpperCase() %>",
-                                    "interval": "D",
-                                    "timezone": "Etc/UTC",
+                                    "interval": "1",
+                                    "timezone": "Europe/Paris",
                                     "theme": "Light",
                                     "style": "1",
-                                    "locale": "en",
+                                    "locale": "fr",
                                     "toolbar_bg": "#f1f3f6",
-                                    "enable_publishing": false,
+                                    "enable_publishing": true,
                                     "save_image": false,
                                     "hideideas": true
                                 });
@@ -292,7 +292,7 @@
 
             var row = "";
             for (s = 0; s < myObj.length; s++) {
-                if(s==25)
+                if(s==10)
                     break;
 
                 row += "<tr>";

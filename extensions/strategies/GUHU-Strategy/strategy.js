@@ -219,7 +219,6 @@
 					}
 						
 				}
-		}
 	            s.last_value_3 = s.last_value_2
 		        s.last_value_2 = s.last_value_1
 		        s.last_value_1 = s.period.high
